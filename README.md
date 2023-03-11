@@ -69,3 +69,7 @@ INFO close connection
 ```
 
 
+# Supported RDB.
+
+- MYSQL
+- postgreSQL
