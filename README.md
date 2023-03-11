@@ -6,7 +6,7 @@ Daff is a json-based database differencing tool that runs on deno.
 ## 1. install
 
 ```sh
-$ deno install --allow-read --allow-write --allow-net --allow-env -n daff https://deno.land/x/daff/main.ts
+$ deno install --allow-read --allow-write --allow-net --allow-env -n daff https://deno.land/x/daff2/main.ts
 ```
 
 ## 2. Create data for comparison.
