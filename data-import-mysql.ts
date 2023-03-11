@@ -10,8 +10,6 @@ const connectionParam = {
   db: Deno.env.get("MYSQL_DB")!,
 };
 
-console.log(connectionParam)
-
 // クライアント作成
 const client = await new Client().connect(connectionParam);
 
