@@ -13,7 +13,6 @@ $ deno install --allow-read --allow-write --allow-net --allow-env -n daff https:
 
 Create a reference file to detect differences.
 
-
 ```sh
 $ daff base mysql connection_mysql.json 2023-03-11T00:00:00Z
 # or
@@ -68,3 +67,5 @@ INFO connected to mysql:3306
 
 INFO close connection
 ```
+
+
