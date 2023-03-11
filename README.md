@@ -41,8 +41,8 @@ INFO connected to mysql:3306
  {
    items: [
      {
-       id: 5
-       user_id: 5
+       id: 3
+       user_id: 3
 -      name: "item_name"
 +      name: "item_name_update"
        created_at: "2023-03-11T12:08:51.000Z"
