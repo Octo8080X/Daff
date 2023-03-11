@@ -11,13 +11,16 @@ $ deno install --allow-read --allow-write --allow-net --allow-env https://deno.l
 
 ```
 
-## 2. Create data for comparison.
+## 1. Create data for comparison.
 
 ```sh
-
+$ deno run --allow-read --allow-write --allow-net --allow-env main.ts diff postgres connec
+tion_postgres.json 2023-03-11T00:00:00Z
 ```
 
-## 3. Create diff.
+## 2. Create diff.
 
 ```sh
+$ deno run --allow-read --allow-write --allow-net --allow-env main.ts diff postgres connec
+tion_postgres.json 2023-03-11T00:00:00Z
 ```
