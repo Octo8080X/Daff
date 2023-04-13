@@ -8,6 +8,7 @@ function isConnectionConfig(obj: any): obj is ConnectionConfig {
   if (!obj.username || typeof obj.username !== "string") return false;
   if (!obj.password || typeof obj.password !== "string") return false;
   if (!obj.db || typeof obj.db !== "string") return false;
+  if (!obj.ignoreTables || !Array.isArray(obj.ignoreTables)) return false;
   return true;
 }
 
@@ -88,6 +89,6 @@ export function validate(args: string[]): ValidateResult {
     mode,
     connectionConfig,
     limitTime,
-    clientType
+    clientType,
   } as ValidateResult;
 }

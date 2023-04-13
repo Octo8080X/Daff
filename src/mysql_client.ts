@@ -19,11 +19,16 @@ export async function closeClient(): Promise<void> {
 export async function getDataAll(
   dbName: string,
   limitTime: Date,
+  ignoreTables: string[],
 ) {
   if (!client) throw "client not setup!";
 
   const tablesResult = await client.execute(`show tables`);
-  const tableNames = tablesResult.rows!.map((r) => r[`Tables_in_${dbName}`]);
+  console.log(ignoreTables);
+  const tableNames = tablesResult.rows!.map((r) => r[`Tables_in_${dbName}`])
+    .filter((r: string) => !ignoreTables.includes(r));
+
+  console.log(tableNames);
 
   const data = {} as { [key: string]: any };
 

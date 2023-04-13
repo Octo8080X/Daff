@@ -1,23 +1,22 @@
 import "https://deno.land/std@0.179.0/dotenv/load.ts";
 import postgres from "https://deno.land/x/postgresjs/mod.js";
 
-
 const connectionParam = {
   host: Deno.env.get("POSTGRES_HOST")!,
   port: Number(Deno.env.get("POSTGRES_PORT")!),
   database: Deno.env.get("POSTGRES_DB")!,
   username: Deno.env.get("POSTGRES_USER")!,
   password: Deno.env.get("POSTGRES_PASSWORD")!,
-}
+};
 
-console.log(connectionParam)
+console.log(connectionParam);
 
 const sql = postgres(connectionParam);
 
-try{
-  await sql`CREATE DATABASE ${sql(connectionParam.database) }`
-}catch(e){
-  console.error(e)
+try {
+  await sql`CREATE DATABASE ${sql(connectionParam.database)}`;
+} catch (e) {
+  console.error(e);
 }
 
 async function createUsersTable() {

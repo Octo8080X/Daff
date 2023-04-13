@@ -8,17 +8,26 @@ export async function base(
   limitTime: Date,
 ): Promise<void> {
   console.log("%cDaff start...", "color: green; font-weight: bold");
-  const sqlClient = new SqlClient(clientType)
-  try{
-  await sqlClient.connectClient(connectionConfig);
-  const data = await sqlClient.getDataAll(connectionConfig.db, limitTime);
-
-  Deno.writeTextFileSync(exportFileName, JSON.stringify(data, null, " "));
   console.log(
-    `%cCreate Files ${exportFileName} compared`,
+    `%cIgnore tables [${connectionConfig.ignoreTables}]`,
     "color: green; font-weight: bold",
   );
-  }  finally {
+
+  const sqlClient = new SqlClient(clientType);
+  try {
+    await sqlClient.connectClient(connectionConfig);
+    const data = await sqlClient.getDataAll(
+      connectionConfig.db,
+      limitTime,
+      connectionConfig.ignoreTables,
+    );
+
+    Deno.writeTextFileSync(exportFileName, JSON.stringify(data, null, " "));
+    console.log(
+      `%cCreate Files ${exportFileName} compared`,
+      "color: green; font-weight: bold",
+    );
+  } finally {
     await sqlClient.closeClient();
   }
 }

@@ -6,7 +6,7 @@ import { diffString } from "npm:json-diff";
 export async function diff(
   clientType: string,
   connectionConfig: ConnectionConfig,
-  limitTime: Date
+  limitTime: Date,
 ): Promise<void> {
   console.log("%cDaff start...", "color: green; font-weight: bold");
 
@@ -15,7 +15,8 @@ export async function diff(
     await sqlClient.connectClient(connectionConfig);
     const latestData = await sqlClient.getDataAll(
       connectionConfig.db,
-      limitTime
+      limitTime,
+      connectionConfig.ignoreTables,
     );
 
     const compareData = JSON.parse(Deno.readTextFileSync(exportFileName));

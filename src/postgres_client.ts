@@ -17,15 +17,21 @@ export async function closeClient(): Promise<void> {
 
 export async function getDataAll(
   limitTime: Date,
+  ignoreTables: string[],
 ) {
   if (!sql) throw "client not setup!";
 
-  const tablesResult = await sql`select schemaname, tablename, tableowner from pg_tables where schemaname = 'public'`;
-  const tableNames = tablesResult.map((r:any) => r.tablename);
+  const tablesResult =
+    await sql`select schemaname, tablename, tableowner from pg_tables where schemaname = 'public'`;
+  const tableNames = tablesResult.map((r: any) => r.tablename).filter((
+    r: string,
+  ) => !ignoreTables.includes(r));
   const data = {} as { [key: string]: any };
 
   for await (const tableName of tableNames) {
-    data[tableName] = await sql`select * from ${sql(tableName)} where created_at >= ${limitTime} OR updated_at >= ${limitTime}`
+    data[tableName] = await sql`select * from ${
+      sql(tableName)
+    } where created_at >= ${limitTime} OR updated_at >= ${limitTime}`;
   }
 
   return data;

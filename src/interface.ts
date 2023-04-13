@@ -4,6 +4,7 @@ export interface ConnectionConfig {
   username: string;
   password: string;
   db: string;
+  ignoreTables: string[];
 }
 
 export interface ValidateResultHelpSuccess {
@@ -14,7 +15,7 @@ export interface ValidateResultHelpSuccess {
 export interface ValidateResultBaseSuccess {
   success: true;
   mode: "base";
-  clientType: "mysql"|"postgres"
+  clientType: "mysql" | "postgres";
   connectionConfig: ConnectionConfig;
   limitTime: Date;
 }
@@ -22,7 +23,7 @@ export interface ValidateResultBaseSuccess {
 export interface ValidateResultDiffSuccess {
   success: true;
   mode: "diff";
-  clientType: "mysql"|"postgres"
+  clientType: "mysql" | "postgres";
   connectionConfig: ConnectionConfig;
   limitTime: Date;
 }

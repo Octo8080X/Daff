@@ -1,4 +1,5 @@
 # Daff
+
 Daff is a json-based database differencing tool that runs on deno.
 
 # Usage
@@ -16,14 +17,13 @@ Create a reference file to detect differences.
 ```sh
 $ daff base mysql connection_mysql.json 2023-03-11T00:00:00Z
 # or
-$ deno run --allow-read --allow-write --allow-net --allow-env main.ts diff mysql connection_postgres.json 2023-03-11T00:00:00Z
+$ deno run --allow-read --allow-write --allow-net --allow-env main.ts diff mysql connection_mysql.json 2023-03-11T00:00:00Z
 
 Daff start...
 INFO connecting mysql:3306
 INFO connected to mysql:3306
 Create Files ./daff_base.json compared
 INFO close connection
-
 ```
 
 ## 3. Create diff.
@@ -33,7 +33,7 @@ After finishing any operation, extract the differences.
 ```sh
 $ daff diff mysql connection_postgres.json 2023-03-11T00:00:00Z
 # or
-$ deno run --allow-read --allow-write --allow-net --allow-env main.ts diff mysql connection_postgres.json 2023-03-11T00:00:00Z
+$ deno run --allow-read --allow-write --allow-net --allow-env main.ts diff mysql connection_mysql.json 2023-03-11T00:00:00Z
 Daff start...
 INFO connecting mysql:3306
 INFO connected to mysql:3306
@@ -67,7 +67,6 @@ INFO connected to mysql:3306
 
 INFO close connection
 ```
-
 
 # Supported RDB.
 

@@ -8,7 +8,7 @@ export class SqlClient {
     this.clientType = clientType;
   }
   async connectClient(connectionConfig: ConnectionConfig) {
-    if(!this.clientType) throw ("Net set connectionConfig!!")
+    if (!this.clientType) throw ("Net set connectionConfig!!");
     if (this.clientType === "mysql") {
       await mysqlClient.connectClient(connectionConfig);
       return;
@@ -16,11 +16,11 @@ export class SqlClient {
     await postgresClient.connectClient(connectionConfig);
   }
 
-  async getDataAll(dbName: string, limitTime: Date) {
+  async getDataAll(dbName: string, limitTime: Date, ignoreTables: string[]) {
     if (this.clientType === "mysql") {
-      return await mysqlClient.getDataAll(dbName, limitTime);
+      return await mysqlClient.getDataAll(dbName, limitTime, ignoreTables);
     }
-    return await postgresClient.getDataAll(limitTime);
+    return await postgresClient.getDataAll(limitTime, ignoreTables);
   }
 
   async closeClient(): Promise<void> {

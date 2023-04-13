@@ -14,7 +14,7 @@ const connectionParam = {
 const client = await new Client().connect(connectionParam);
 
 // データベース作成
-await client.execute(`CREATE DATABASE IF NOT EXISTS ??`,[connectionParam.db]);
+await client.execute(`CREATE DATABASE IF NOT EXISTS ??`, [connectionParam.db]);
 
 async function createUsersTable() {
   await client.execute(`
